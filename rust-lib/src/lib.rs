@@ -7,3 +7,4 @@ struct RustExtension;
 unsafe impl ExtensionLibrary for RustExtension {}
 
 pub mod character;
+pub mod calltodelete;
