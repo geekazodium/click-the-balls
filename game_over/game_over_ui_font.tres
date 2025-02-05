@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://b4vq6bx2kj3am"]
+
+[ext_resource type="SystemFont" uid="uid://sxj2l3d70677" path="res://game_over/base_font.tres" id="1_yda08"]
+
+[resource]
+base_font = ExtResource("1_yda08")

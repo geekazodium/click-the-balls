@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbv1dxyigx1xv"]
+[gd_scene load_steps=4 format=3 uid="uid://cbv1dxyigx1xv"]
 
 [ext_resource type="PackedScene" uid="uid://cxkheb3utiifc" path="res://env_static_body.tscn" id="1_f1hxx"]
-[ext_resource type="PackedScene" uid="uid://qkya5u2vyr13" path="res://ball.tscn" id="2_t26vm"]
+[ext_resource type="PackedScene" uid="uid://qkya5u2vyr13" path="res://ball.tscn" id="2_6ocrc"]
+[ext_resource type="PackedScene" uid="uid://nyu8lo2qpupe" path="res://game_over/game_over.tscn" id="3_2ankv"]
 
 [node name="Node2D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.52327, 0)
@@ -12,6 +13,12 @@ light_color = Color(1, 1, 0.847059, 1)
 shadow_enabled = true
 
 [node name="StaticBody3D" parent="." instance=ExtResource("1_f1hxx")]
+
+[node name="StaticBody3D6" parent="." instance=ExtResource("1_f1hxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.0593, 0)
+
+[node name="MeshInstance3D" parent="StaticBody3D6" index="1"]
+transform = Transform3D(17, 0, 0, 0, 1, 0, 0, 0, 17, 0, -22.516, 0)
 
 [node name="StaticBody3D2" parent="." instance=ExtResource("1_f1hxx")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9, 8, 0)
@@ -27,22 +34,39 @@ transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.3
 input_ray_pickable = false
 
 [node name="MeshInstance3D" parent="StaticBody3D5" index="1"]
-transform = Transform3D(17, 0, 0, 0, 1, 0, 0, 0, 17, 13.0265, 4.76837e-07, 0)
+transform = Transform3D(17, 0, 0, 0, 1, 1.13687e-13, 0, 0, 35.2756, 16.3274, 1.43051e-06, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.25335, 9.44154)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.25335, 12.2495)
+fov = 80.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59708, 5.3967, -4.41643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59708, 5.3967, -1.62582)
 light_color = Color(0.717647, 0.85098, 1, 1)
-omni_range = 10.1985
+omni_range = 28.3945
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05031, 5.3967, -4.41643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61041, 5.42674, -3.90034)
 light_color = Color(0.498039, 1, 1, 1)
 omni_range = 10.1985
 
-[node name="Ball" parent="." instance=ExtResource("2_t26vm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3029, 6.88465, 2.03076)
+[node name="TargetsCounter" type="TargetsCounter" parent="."]
 
+[node name="RandomSpawner" type="RandomSpawner" parent="." node_paths=PackedStringArray("other_point", "target")]
+min_spawns = 20
+max_spawns = 25
+other_point = NodePath("Node3D")
+spawn_scene = ExtResource("2_6ocrc")
+target = NodePath("../TargetsCounter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7.26565, 4)
+
+[node name="Node3D" type="Node3D" parent="RandomSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5, -7)
+
+[node name="GameOverInit" type="GameOverInit" parent="."]
+game_over_ui = ExtResource("3_2ankv")
+
+[connection signal="on_completed" from="TargetsCounter" to="GameOverInit" method="show_game_over_screen"]
+
+[editable path="StaticBody3D6"]
 [editable path="StaticBody3D5"]

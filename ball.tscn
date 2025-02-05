@@ -18,4 +18,8 @@ mesh = SubResource("SphereMesh_44jf5")
 [node name="ClickToDelete" type="ClickToDelete" parent="."]
 action = "click"
 
+[node name="RandomInitVelocity" type="RandomInitVelocity" parent="."]
+min_vel = Vector3(-10, 0, -10)
+max_vel = Vector3(10, 0, 10)
+
 [connection signal="input_event" from="." to="ClickToDelete" method="delete_on_click"]
