@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://qkya5u2vyr13"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://5s8d5ndd2w6b" path="res://ball_physics_material.tres" id="1_cr4ce"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fjhmv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_44jf5"]
+
+[node name="Ball" type="RigidBody3D"]
+physics_material_override = ExtResource("1_cr4ce")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fjhmv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_44jf5")
+
+[node name="ClickToDelete" type="ClickToDelete" parent="."]
+action = "click"
+
+[connection signal="input_event" from="." to="ClickToDelete" method="delete_on_click"]
