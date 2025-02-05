@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbv1dxyigx1xv"]
+[gd_scene load_steps=5 format=3 uid="uid://cbv1dxyigx1xv"]
 
 [ext_resource type="PackedScene" uid="uid://cxkheb3utiifc" path="res://env_static_body.tscn" id="1_f1hxx"]
 [ext_resource type="PackedScene" uid="uid://qkya5u2vyr13" path="res://balls/ball.tscn" id="2_6ocrc"]
 [ext_resource type="PackedScene" uid="uid://nyu8lo2qpupe" path="res://game_over/game_over.tscn" id="3_2ankv"]
+[ext_resource type="PackedScene" uid="uid://f4g75oiuglnt" path="res://balls/click_effects/click_effect.tscn" id="4_bciv1"]
 
 [node name="Node2D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.52327, 0)
@@ -70,6 +71,8 @@ visible = false
 
 [node name="RichTextLabel" parent="GameOver" index="1" node_paths=PackedStringArray("target_counter")]
 target_counter = NodePath("../../TargetsCounter")
+
+[node name="ClickEffect" parent="." instance=ExtResource("4_bciv1")]
 
 [connection signal="on_completed" from="TargetsCounter" to="GameOver/RichTextLabel" method="update"]
 [connection signal="on_completed" from="TargetsCounter" to="GameOver/GameOverInit" method="show_game_over_screen"]
