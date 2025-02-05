@@ -1,7 +1,7 @@
+use godot::classes::CanvasLayer;
 use godot::classes::INode3D;
 use godot::classes::Node3D;
 use godot::classes::Node;
-use godot::classes::PackedScene;
 use godot::global::godot_print;
 use godot::obj::Base;
 use godot::obj::Gd;
@@ -11,7 +11,7 @@ use godot::prelude::GodotClass;
 
 #[derive(GodotClass)]
 #[class(base = Node3D, init)]
-struct TargetsCounter{
+pub struct TargetsCounter{
     base: Base<Node3D>,
     sphere_count: i32,
     game_ended: bool
@@ -24,6 +24,7 @@ impl INode3D for TargetsCounter{
         self.game_ended = false;
     }
     fn process(&mut self, _delta: f64){
+        self.sphere_count = self.base().get_child_count().max(self.sphere_count);
         //godot_print!("boop {}", self.base().get_child_count());
         if self.base().get_child_count() == 0{
             if self.game_ended{
@@ -40,6 +41,10 @@ impl INode3D for TargetsCounter{
 impl TargetsCounter{
     #[signal]
     fn on_completed();
+    #[func]
+    pub fn get_sphere_count(&self)-> i32{
+        self.sphere_count
+    }
 }
 
 #[derive(GodotClass)]
@@ -47,18 +52,13 @@ impl TargetsCounter{
 struct GameOverInit{
     base: Base<Node>,
     #[export]
-    game_over_ui: Option<Gd<PackedScene>>
+    to_display: Option<Gd<CanvasLayer>>
 }
 
 #[godot_api]
 impl GameOverInit{
     #[func]
     fn show_game_over_screen(&mut self){
-        let init = self.game_over_ui
-            .as_ref()
-            .expect("no instantiation set")
-            .instantiate()
-            .expect("failed to init scene");
-        self.base_mut().add_child(&init);
+        self.to_display.as_mut().expect("no scene to display").set_visible(true);
     }
 }
