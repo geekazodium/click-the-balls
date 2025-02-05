@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbv1dxyigx1xv"]
 
 [ext_resource type="PackedScene" uid="uid://cxkheb3utiifc" path="res://env_static_body.tscn" id="1_f1hxx"]
-[ext_resource type="PackedScene" uid="uid://qkya5u2vyr13" path="res://ball.tscn" id="2_6ocrc"]
+[ext_resource type="PackedScene" uid="uid://qkya5u2vyr13" path="res://balls/ball.tscn" id="2_6ocrc"]
 [ext_resource type="PackedScene" uid="uid://nyu8lo2qpupe" path="res://game_over/game_over.tscn" id="3_2ankv"]
 
 [node name="Node2D" type="Node3D"]
@@ -39,6 +39,8 @@ transform = Transform3D(17, 0, 0, 0, 1, 1.13687e-13, 0, 0, 35.2756, 16.3274, 1.4
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.25335, 12.2495)
 fov = 80.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59708, 5.3967, -1.62582)
