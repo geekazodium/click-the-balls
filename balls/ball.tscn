@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://qkya5u2vyr13"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://5s8d5ndd2w6b" path="res://ball_physics_material.tres" id="1_cr4ce"]
+[ext_resource type="PhysicsMaterial" uid="uid://5s8d5ndd2w6b" path="res://balls/ball_physics_material.tres" id="1_cr4ce"]
 [ext_resource type="PackedScene" uid="uid://f4g75oiuglnt" path="res://balls/click_effects/click_effect.tscn" id="2_meess"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fjhmv"]
