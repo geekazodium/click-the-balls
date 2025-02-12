@@ -1,24 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://f4g75oiuglnt"]
+[gd_scene load_steps=8 format=3 uid="uid://f4g75oiuglnt"]
 
 [ext_resource type="AudioStream" uid="uid://chb0jnhrwqxcd" path="res://balls/click_effects/Hook1.wav" id="1_c3c8s"]
+[ext_resource type="Material" uid="uid://c8qm6elsd0jmm" path="res://balls/click_effects/process_material.tres" id="2_u70w3"]
 [ext_resource type="Material" uid="uid://doifs8hwksqne" path="res://balls/click_effects/trails_small_material.tres" id="3_l0yp1"]
 [ext_resource type="Material" uid="uid://cb40edqq5d2pl" path="res://balls/click_effects/trails_material.tres" id="3_v85x2"]
-
-[sub_resource type="Curve" id="Curve_mtmr1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.405797, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_013oa"]
-curve = SubResource("Curve_mtmr1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_scnm4"]
-particle_flag_align_y = true
-spread = 180.0
-initial_velocity_min = 10.0
-initial_velocity_max = 15.0
-scale_min = 0.7
-scale_max = 1.3
-scale_curve = SubResource("CurveTexture_013oa")
+[ext_resource type="Material" uid="uid://cje6jgq8syxdk" path="res://balls/click_effects/process_material_2.tres" id="4_2kq5t"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vv6ku"]
 material = ExtResource("3_v85x2")
@@ -29,18 +15,9 @@ radial_segments = 4
 rings = 2
 cap_bottom = false
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pp5t6"]
-particle_flag_align_y = true
-spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 15.0
-scale_min = 0.7
-scale_max = 1.3
-scale_curve = SubResource("CurveTexture_013oa")
-
 [sub_resource type="BoxMesh" id="BoxMesh_ct3sx"]
 material = ExtResource("3_l0yp1")
-size = Vector3(0.4, 0.05, 0.4)
+size = Vector3(0.3, 0.025, 0.3)
 
 [node name="ClickEffect" type="Node3D"]
 
@@ -54,17 +31,17 @@ pitch_scale = 1.28
 autoplay = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 40
+amount = 25
 explosiveness = 0.95
 fixed_fps = 20
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_scnm4")
+process_material = ExtResource("2_u70w3")
 draw_pass_1 = SubResource("CylinderMesh_vv6ku")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
-amount = 35
+amount = 20
 explosiveness = 0.95
 fixed_fps = 20
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_pp5t6")
+process_material = ExtResource("4_2kq5t")
 draw_pass_1 = SubResource("BoxMesh_ct3sx")

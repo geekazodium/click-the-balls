@@ -32,6 +32,9 @@ impl ClickToDelete{
         if !event.is_action(self.action.arg()){
             return;
         }
+        if !event.is_pressed(){
+            return;
+        }
         self.base()
             .get_parent()
             .expect("can't run call to delete on object with no parent")
