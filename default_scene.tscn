@@ -55,12 +55,13 @@ omni_range = 10.1985
 
 [node name="TargetsCounter" type="TargetsCounter" parent="."]
 
-[node name="RandomSpawner" type="RandomSpawner" parent="." node_paths=PackedStringArray("other_point", "target")]
+[node name="RandomSpawner" type="RandomSpawner" parent="." node_paths=PackedStringArray("other_point", "target", "target_counter")]
 min_spawns = 20
 max_spawns = 25
 other_point = NodePath("Node3D")
 spawn_scene = ExtResource("2_6ocrc")
 target = NodePath("../TargetsCounter")
+target_counter = NodePath("../TargetsCounter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7.26565, 4)
 
 [node name="Node3D" type="Node3D" parent="RandomSpawner"]

@@ -11,6 +11,7 @@ use godot::prelude::godot_api;
 use godot::prelude::GodotClass;
 
 use crate::random_util::get_rand_pos;
+use crate::targets_counting::TargetsCounter;
 
 #[derive(GodotClass)]
 #[class(base = Node3D, init)]
@@ -25,7 +26,9 @@ struct RandomSpawner{
     #[export]
     spawn_scene: Option<Gd<PackedScene>>,
     #[export]
-    target: Option<Gd<Node>>
+    target: Option<Gd<Node>>,
+    #[export]
+    target_counter: Option<Gd<TargetsCounter>>
 }
 
 #[godot_api]
@@ -46,6 +49,7 @@ impl INode3D for RandomSpawner{
             self.target.clone().unwrap().add_child(&spawn);
             spawn.set_global_position(new_pos);
         }
+        self.target_counter.as_mut().expect("no target counter was set").bind_mut().set_sphere_count(max);
     }
     fn process(&mut self, _delta: f64){
         if self.base().get_child_count() == 0{

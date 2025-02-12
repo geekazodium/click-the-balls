@@ -20,12 +20,9 @@ pub struct TargetsCounter{
 #[godot_api]
 impl INode3D for TargetsCounter{
     fn ready(&mut self){
-        self.sphere_count = self.base().get_child_count();
         self.game_ended = false;
     }
     fn process(&mut self, _delta: f64){
-        self.sphere_count = self.base().get_child_count().max(self.sphere_count);
-        //godot_print!("boop {}", self.base().get_child_count());
         if self.base().get_child_count() == 0{
             if self.game_ended{
                 return;
@@ -44,6 +41,12 @@ impl TargetsCounter{
     #[func]
     pub fn get_sphere_count(&self)-> i32{
         self.sphere_count
+    }
+}
+
+impl TargetsCounter {
+    pub fn set_sphere_count(&mut self, count: i32){
+        self.sphere_count = count;
     }
 }
 
