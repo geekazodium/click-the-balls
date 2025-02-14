@@ -90,7 +90,7 @@ visible = false
 target_counter = NodePath("../../TargetsCounter")
 
 [node name="ClickEffect" parent="." instance=ExtResource("4_bciv1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -545.977, 0.32074)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.1773)
 
 [connection signal="on_completed" from="TargetsCounter" to="GameOver/RichTextLabel" method="update"]
 [connection signal="on_completed" from="TargetsCounter" to="GameOver/GameOverInit" method="show_game_over_screen"]
